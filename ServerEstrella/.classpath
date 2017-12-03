@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Emmanuel/eclipse/java-latest-released/eclipse/jfoenix.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Emmanuel/eclipse/java-latest-released/eclipse/jiconfont-google_material_design_icons-2.2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Emmanuel/eclipse/java-latest-released/eclipse/fontawesomefx-8.9.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

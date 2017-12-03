@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="tt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="481.0" style="-fx-background-color: #F44336;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.WelcomeController">
+   <children>
+      <Pane layoutX="200.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F44336;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="initBtn" alignment="CENTER" buttonType="RAISED" layoutX="186.0" layoutY="253.0" onAction="#loadPage" prefHeight="40.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #009688;" text="INICIAR" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </JFXButton>
+            <Text fill="WHITE" layoutX="103.0" layoutY="64.0" stroke="WHITE" text="Mesero Escritorio" textAlignment="CENTER">
+               <font>
+                  <Font name="SansSerif Regular" size="36.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#0000007d" height="17.42" offsetY="2.0" radius="7.315" width="13.84" />
+               </effect>
+            </Text>
+            <Text fill="#ffffffb2" layoutX="65.0" layoutY="107.0" stroke="WHITE" strokeWidth="0.0" text="Bienvenido a la version de escritorio de Mesero App." textAlignment="CENTER" wrappingWidth="350.6712646484375">
+               <font>
+                  <Font name="SansSerif Regular" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow color="#0000007d" height="17.42" offsetY="2.0" radius="7.315" width="13.84" />
+               </effect>
+            </Text>
+         </children>
+         <padding>
+            <Insets left="100.0" right="20.0" />
+         </padding>
+      </Pane>
+   </children>
+</AnchorPane>

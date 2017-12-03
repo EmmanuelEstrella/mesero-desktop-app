@@ -1,0 +1,10 @@
+.jfx-hamburger-icon{
+    -fx-spacing: 5;
+    -fx-cursor: hand;
+}
+.jfx-hamburger-icon StackPane{
+    -fx-pref-width: 35px;
+    -fx-pref-height: 3px;
+    -fx-background-color : #FFFFFF;
+    -fx-background-radius : 5px;
+}
