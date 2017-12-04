@@ -1,3 +1,9 @@
+* {
+    -fx-accent: #009688;
+    -fx-accent: #009688;
+    -fx-text-btn: #FFFFFF;
+}
+
 .jfx-hamburger-icon{
     -fx-spacing: 5;
     -fx-cursor: hand;
@@ -7,4 +13,16 @@
     -fx-pref-height: 3px;
     -fx-background-color : #FFFFFF;
     -fx-background-radius : 5px;
+}
+
+.card {
+    -fx-border-radius: 3 3 3 3;
+    -fx-background-radius: 3 3 3 3;
+    -fx-background-color : #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, #00000031, 10, 0, 0, 2);
+}
+
+.default-btn {
+    -fx-background-color : -fx-accent;
+    -fx-text-fill :-fx-text-btn;
 }

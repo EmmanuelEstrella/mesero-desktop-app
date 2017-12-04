@@ -15,7 +15,7 @@
             <Image url="@back.jpg" />
          </image>
       </ImageView>
-      <JFXButton fx:id="orderBtn" graphicTextGap="20.0" maxHeight="200.0" onAction="#onClick" prefHeight="40.0" prefWidth="200.0" ripplerFill="#009688" text="Ordenes" textFill="#757575">
+      <JFXButton fx:id="orderBtn" graphicTextGap="20.0" onAction="#onClick" prefHeight="100.0" prefWidth="200.0" ripplerFill="#009688" text="Ordenes" textFill="#757575">
          <font>
             <Font name="SansSerif Regular" size="14.0" />
          </font>
@@ -29,7 +29,7 @@
             <Insets right="60.0" />
          </padding>
       </JFXButton>
-      <JFXButton graphicTextGap="20.0" maxHeight="200.0" prefHeight="40.0" prefWidth="200.0" ripplerFill="#009688" text="Facturacion" textFill="#757575">
+      <JFXButton graphicTextGap="20.0" prefHeight="100.0" prefWidth="200.0" ripplerFill="#009688" text="Facturacion" textFill="#757575">
          <font>
             <Font name="SansSerif Regular" size="14.0" />
          </font>
@@ -40,7 +40,7 @@
             <Insets right="40.0" />
          </padding>
       </JFXButton>
-      <JFXButton graphicTextGap="20.0" maxHeight="200.0" prefHeight="40.0" prefWidth="200.0" ripplerFill="#009688" text="Inventario" textFill="#757575">
+      <JFXButton graphicTextGap="20.0" prefHeight="100.0" prefWidth="200.0" ripplerFill="#009688" text="Inventario" textFill="#757575">
          <font>
             <Font name="SansSerif Regular" size="14.0" />
          </font>
@@ -51,7 +51,7 @@
             <Insets right="53.0" />
          </padding>
       </JFXButton>
-      <JFXButton graphicTextGap="20.0" maxHeight="200.0" minHeight="40.0" prefWidth="200.0" ripplerFill="#009688" text="Contabilidad" textFill="#757575">
+      <JFXButton graphicTextGap="20.0" prefHeight="100.0" prefWidth="200.0" ripplerFill="#009688" text="Contabilidad" textFill="#757575">
          <font>
             <Font name="SansSerif Regular" size="14.0" />
          </font>
