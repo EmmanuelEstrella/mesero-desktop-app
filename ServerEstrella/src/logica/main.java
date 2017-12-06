@@ -22,7 +22,7 @@ public class main {
                System.out.println("RECEIVED: " + sentence);
                
                InetAddress IPAddress = null;
-               IPAddress = InetAddress.getByName("192.168.0.109");
+               IPAddress = InetAddress.getByName("192.168.43.104");
                int port = 9876;
                byte[] sendData = receiveData;
                String capitalizedSentence = sentence.toUpperCase();
