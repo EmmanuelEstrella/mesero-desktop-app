@@ -1,6 +1,8 @@
 * {
     -fx-accent: #009688;
-    -fx-accent: #009688;
+    -fx-primary: #F44336;
+    -fx-divider: #BDBDBD;
+    -fx-divider-light: #eeeeee;
     -fx-text-btn: #FFFFFF;
 }
 
@@ -25,4 +27,9 @@
 .default-btn {
     -fx-background-color : -fx-accent;
     -fx-text-fill :-fx-text-btn;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-padding: 0 0 0 1;
+    -fx-background-color : -fx-divider;
 }

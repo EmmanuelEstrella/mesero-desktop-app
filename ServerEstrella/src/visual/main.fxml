@@ -11,7 +11,14 @@
 
 <AnchorPane fx:id="root" prefHeight="368.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.Controller">
    <children>
-      <JFXToolbar maxHeight="40.0" minHeight="40.0" prefHeight="30.0" style="-fx-background-color: #F44336;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="mainAnchor" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #EEEEEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <JFXMasonryPane fx:id="masonPane" HSpacing="1.0" cellHeight="50.0" cellWidth="50.0" style="-fx-background-color: #EEEEEE;" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding></AnchorPane>
+      <JFXToolbar maxHeight="40.0" minHeight="40.0" prefHeight="30.0" style="-fx-background-color: -fx-primary;" stylesheets="@customStyles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <JFXHamburger fx:id="drawerBtn" styleClass="jfx-hamburger-icon" stylesheets="@customStyles.css" BorderPane.alignment="CENTER">
                <padding>
@@ -26,13 +33,6 @@
             <Insets right="10.0" />
          </padding>
       </JFXToolbar>
-      <AnchorPane fx:id="mainAnchor" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #EEEEEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         <children>
-            <JFXMasonryPane fx:id="masonPane" HSpacing="1.0" cellHeight="50.0" cellWidth="50.0" style="-fx-background-color: #EEEEEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-         </children>
-         <padding>
-            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-         </padding></AnchorPane>
-      <JFXDrawer fx:id="mainDrawer" defaultDrawerSize="200.0" layoutY="40.0" prefHeight="360.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+      <JFXDrawer fx:id="mainDrawer" defaultDrawerSize="200.0" layoutY="40.0" maxWidth="1.7976931348623157E308" prefHeight="300.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>

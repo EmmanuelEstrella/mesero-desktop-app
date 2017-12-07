@@ -15,21 +15,21 @@ import java.util.logging.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXMasonryPane;
+import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -50,8 +50,9 @@ public class Controller implements Initializable {
 	@FXML
 	private JFXMasonryPane masonPane;
 
-	private int c = 0;
-    
+	private int cardCount = 0;
+
+	private Order tempOrder;
    
 
 
@@ -61,9 +62,7 @@ public class Controller implements Initializable {
 		Gson gson = new GsonBuilder()
 				.create();
 
-		Order order =  gson.fromJson("{\"items\":[\"Hamburguesa\",\"Pizza\"],\"tableId\":2}",Order.class);
-		System.out.println("TABLE: " + order.getTableId());
-		System.out.println("ITEMS: " + order.getItems());
+		tempOrder =  gson.fromJson("{\"items\":[\"Hamburguesa\",\"Pizza\"],\"tableId\":2}",Order.class);
 		
 		 try {
 			 	FXMLLoader loader = new FXMLLoader();
@@ -105,13 +104,28 @@ public class Controller implements Initializable {
 
 	public void addCard(ActionEvent e){
 		System.out.println("CLICKED");
-		Random r = new Random();
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Controller.class.getResource("orderCard.fxml"));
 			AnchorPane box = loader.load();
 			Text t = (Text) box.lookup("#textId");
-			t.setText("THIS IS A CARD ID: " + c);
+			JFXListView l = (JFXListView) box.lookup("#itemList");
+			t.setText("Orden de la Mesa: " + tempOrder.getTableId());
+
+			for(int i = 0; i < tempOrder.getItems().size(); i++){
+				l.getItems().add(tempOrder.getItems().get(i));
+			}
+
+			JFXButton sendBtn = (JFXButton) box.lookup("#sendBtn");
+			sendBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					System.out.println("SEND CLICKED");
+					int value = cardCount;
+					sendDatatoPi(String.valueOf(tempOrder.getTableId()),box);
+				}
+			});
+
 //			for(int i = 0; i < 100; i++){
 //				Label lbl = new Label();
 //				lbl.setPrefSize(r.nextInt(200),r.nextInt(200));
@@ -120,10 +134,6 @@ public class Controller implements Initializable {
 //			}
 			//box.setPrefHeight(r.nextInt(200));
 			masonPane.getChildren().add(box);
-
-			c++;
-			System.out.println("COUNT" + box.getChildren().size());
-			System.out.println("COUNT" + masonPane.getChildren().size());
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -136,7 +146,7 @@ public class Controller implements Initializable {
 			loader.setLocation(Controller.class.getResource("orderCard.fxml"));
 			AnchorPane box = loader.load();
 			Text t = (Text) box.lookup("#textId");
-			ListView l = (ListView) box.lookup("#itemList");
+			JFXListView l = (JFXListView) box.lookup("#itemList");
 			t.setText("Orden de la Mesa: " + order.getTableId());
 			for(int i = 0; i < order.getItems().size(); i++){
 				l.getItems().add(order.getItems().get(i));
@@ -148,17 +158,57 @@ public class Controller implements Initializable {
 //				masonPane.getChildren().add(lbl);
 //			}
 			//box.setPrefHeight(r.nextInt(200));
+			JFXButton sendBtn = (JFXButton) box.lookup("#sendBtn");
+			sendBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					System.out.println("SEND CLICKED");
+					int value = cardCount;
+					sendDatatoPi(String.valueOf(order.getTableId()),box);
+				}
+			});
+
 			masonPane.getChildren().add(box);
+			cardCount++;
 		}catch (IOException e1){
 			e1.printStackTrace();
 		}
 
 	}
-        
+	public void sendDatatoPi(String data, AnchorPane box){
+		int index = masonPane.getChildren().indexOf(box);
+		masonPane.getChildren().remove(index);
+		new Thread(new Runnable(){
+			@Override
+			public void run() {
+				try {
+					sendDataToPITask(data);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+
+
+	public  void sendDataToPITask(String data) throws IOException{
+		System.out.println("DATA TO SEND TO PI: " + data);
+		DatagramSocket serverSocket = new DatagramSocket(9878);
+		InetAddress IPAddress = null;
+		IPAddress = InetAddress.getByName("192.168.0.109");//direccion de la pi
+		int port = 9876;
+		byte[] sendData;
+
+		sendData = data.getBytes();
+		DatagramPacket sendPacket =new DatagramPacket(sendData, sendData.length, IPAddress, port);
+		serverSocket.send(sendPacket);
+		serverSocket.close();
+		System.out.println("DATA SENT TO PI");
+	}
 	private void runYourBackgroundTaskHere() throws IOException {
 		// TODO Auto-generated method stub
-		 DatagramSocket serverSocket = new DatagramSocket(9876);
 
+		DatagramSocket serverSocket = new DatagramSocket(9876);
 
 		 while(true)
 			{
@@ -184,14 +234,7 @@ public class Controller implements Initializable {
 					}
 				});
 
-			   InetAddress IPAddress = null;
-			   IPAddress = InetAddress.getByName("192.168.0.109");
-			   int port = 9876;
-			   byte[] sendData = receiveData;
-			   String capitalizedSentence = sentence.toUpperCase();
-			   sendData = capitalizedSentence.getBytes();
-			   DatagramPacket sendPacket =new DatagramPacket(sendData, sendData.length, IPAddress, port);
-			   serverSocket.send(sendPacket);
+
 
 
 
