@@ -29,12 +29,12 @@ public class MainAct extends Application {
 	public void start(Stage primaryStage) {
 		FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Welcome.class.getResource("main.fxml"));
-        
+
         
         try {
 			rootPane = (AnchorPane) loader.load();
 			Scene scene = new Scene(rootPane);
-			
+
            primaryStage.setScene(scene);
            primaryStage.show();
            

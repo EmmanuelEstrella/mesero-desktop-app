@@ -15,7 +15,9 @@ import java.util.logging.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+
 import com.jfoenix.controls.*;
+import com.jfoenix.effects.JFXDepthManager;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import javafx.application.Platform;
@@ -27,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SplitPane;
@@ -45,10 +48,18 @@ public class Controller implements Initializable {
     private JFXDrawer mainDrawer;
     
     @FXML
-    private AnchorPane root;
+    private AnchorPane ordersPane;
+	@FXML
+	private AnchorPane noOrdersPane;
+
+	@FXML
+	private AnchorPane waitersPane;
 
 	@FXML
 	private JFXMasonryPane masonPane;
+
+	@FXML
+	private ScrollPane scrollPane;
 
 	private int cardCount = 0;
 
@@ -64,28 +75,28 @@ public class Controller implements Initializable {
 
 		tempOrder =  gson.fromJson("{\"items\":[\"Hamburguesa\",\"Pizza\"],\"tableId\":2}",Order.class);
 		
-		 try {
-			 	FXMLLoader loader = new FXMLLoader();
-		        loader.setLocation(Controller.class.getResource("SidePanelContent.fxml"));
-	            VBox box = loader.load();
-	            mainDrawer.setSidePane(box);
-	        } catch (IOException ex) {
-	            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-	        	
-	        }
-	        
-		HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(drawerBtn);
-        transition.setRate(-1);
-        drawerBtn.addEventHandler(MouseEvent.MOUSE_PRESSED,(e)->{
-            transition.setRate(transition.getRate()*-1);
-            transition.play();
-            System.out.println("FLOF");
-            if(mainDrawer.isShown())
-            {
-            	mainDrawer.close();
-            }else
-            	mainDrawer.open();
-        });
+//		 try {
+//			 	FXMLLoader loader = new FXMLLoader();
+//		        loader.setLocation(Controller.class.getResource("SidePanelContent.fxml"));
+//	            VBox box = loader.load();
+//	            mainDrawer.setSidePane(box);
+//	        } catch (IOException ex) {
+//	            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+//
+//	        }
+//
+//		HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(drawerBtn);
+//        transition.setRate(-1);
+//        drawerBtn.addEventHandler(MouseEvent.MOUSE_PRESSED,(e)->{
+//            transition.setRate(transition.getRate()*-1);
+//            transition.play();
+//            System.out.println("FLOF");
+//            if(mainDrawer.isShown())
+//            {
+//            	mainDrawer.close();
+//            }else
+//            	mainDrawer.open();
+//        });
         
         Runnable r = new Runnable() {
             public void run() {
@@ -99,9 +110,23 @@ public class Controller implements Initializable {
         };
 
         new Thread(r).start();
-		
+		Platform.runLater(() -> scrollPane.requestLayout());
+
+		JFXScrollPane.smoothScrolling(scrollPane);
 	}
 
+	public void changePane(ActionEvent e){
+		JFXButton button =  (JFXButton) e.getSource();
+		System.out.println("CLICKED" + button.getId());
+		if( button.getId().equals("waiterBtn")){
+			ordersPane.setVisible(false);
+			waitersPane.setVisible(true);
+		}else{
+			ordersPane.setVisible(true);
+			waitersPane.setVisible(false);
+		}
+
+	}
 	public void addCard(ActionEvent e){
 		System.out.println("CLICKED");
 		try {
@@ -133,10 +158,12 @@ public class Controller implements Initializable {
 //				masonPane.getChildren().add(lbl);
 //			}
 			//box.setPrefHeight(r.nextInt(200));
+			JFXDepthManager.setDepth(box, 1);
 			masonPane.getChildren().add(box);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		updatePanes();
 
 	}
 
@@ -170,14 +197,25 @@ public class Controller implements Initializable {
 
 			masonPane.getChildren().add(box);
 			cardCount++;
+
 		}catch (IOException e1){
 			e1.printStackTrace();
 		}
 
+		updatePanes();
+
+	}
+	public void updatePanes(){
+		if(masonPane.getChildren().size() > 0){
+			noOrdersPane.setVisible(false);
+		}else{
+			noOrdersPane.setVisible(true);
+		}
 	}
 	public void sendDatatoPi(String data, AnchorPane box){
 		int index = masonPane.getChildren().indexOf(box);
 		masonPane.getChildren().remove(index);
+		updatePanes();
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
