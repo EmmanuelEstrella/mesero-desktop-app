@@ -1,9 +1,11 @@
 * {
     -fx-accent: #009688;
     -fx-primary: #F44336;
+    -fx-primary-dark: #D32F2F;
     -fx-divider: #BDBDBD;
     -fx-divider-light: #eeeeee;
     -fx-text-btn: #FFFFFF;
+
 }
 
 .app-title{
@@ -41,4 +43,40 @@
 .split-pane > .split-pane-divider {
     -fx-padding: 0 0 0 1;
     -fx-background-color : -fx-divider;
+}
+
+.jfx-decorator {
+    -fx-decorator-color: -fx-primary-dark;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 4 4 4;
+}
+
+.jfx-decorator .jfx-decorator-title-container .jfx-decorator-text {
+    -fx-fill: WHITE;
+    -fx-font-size: 16;
+}
+
+.jfx-decorator .jfx-decorator-title-container .jfx-svg-glyph {
+    -fx-shape: "M512 682c-128.024-99.309-255.626-199.040-384-298l384-298 384 298c-128.375 98.958-255.974 198.693-384 298zM512 792l314-246 70 54-384 298-384-298 70-54z";
+    -jfx-size: 15;
+    -fx-background-color: WHITE;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: -fx-primary;
+}
+
+.jfx-tab-pane .headers-region .tab-selected-line {
+    -fx-background-color: -fx-accent;
+}
+
+.jfx-tab-pane .headers-region > .tab > .jfx-rippler {
+    -jfx-rippler-fill: #FFFFFF;
 }

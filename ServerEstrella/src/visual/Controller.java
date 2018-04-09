@@ -115,18 +115,6 @@ public class Controller implements Initializable {
 		JFXScrollPane.smoothScrolling(scrollPane);
 	}
 
-	public void changePane(ActionEvent e){
-		JFXButton button =  (JFXButton) e.getSource();
-		System.out.println("CLICKED" + button.getId());
-		if( button.getId().equals("waiterBtn")){
-			ordersPane.setVisible(false);
-			waitersPane.setVisible(true);
-		}else{
-			ordersPane.setVisible(true);
-			waitersPane.setVisible(false);
-		}
-
-	}
 	public void addCard(ActionEvent e){
 		System.out.println("CLICKED");
 		try {
@@ -271,14 +259,7 @@ public class Controller implements Initializable {
 						displayNewCard(order);
 					}
 				});
-
-
-
-
-
-
-
-
+				
 			}
 
 	}
