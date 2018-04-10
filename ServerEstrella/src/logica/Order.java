@@ -13,12 +13,28 @@ public class Order implements Serializable{
 
     private int tableId;
     private ArrayList<String> items;
+    private String userIp;
 
     public Order(){}
 
     public Order(int tableId, ArrayList<String> items) {
         this.tableId = tableId;
         this.items = items;
+        userIp = "";
+    }
+
+    public Order(int tableId, ArrayList<String> items, String userIp) {
+        this.tableId = tableId;
+        this.items = items;
+        this.userIp = userIp;
+    }
+
+    public String getUserIp() {
+        return userIp;
+    }
+
+    public void setUserIp(String userIp) {
+        this.userIp = userIp;
     }
 
     public int getTableId() {

@@ -14,72 +14,100 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" prefHeight="368.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.Controller">
-   <children>
-      <JFXToolbar maxHeight="40.0" minHeight="60.0" prefHeight="30.0" style="-fx-background-color: -fx-primary;" stylesheets="@customStyles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label layoutX="14.0" layoutY="8.0" prefHeight="19.0" prefWidth="127.0" styleClass="app-title" stylesheets="@customStyles.css" text="Mesero" wrapText="true">
-                     <effect>
-                        <DropShadow blurType="GAUSSIAN" color="#00000080" height="10.0" offsetY="3.0" radius="4.5" width="10.0" />
-                     </effect>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </left>
-         <right>
-            <AnchorPane prefHeight="70.0" prefWidth="685.0" BorderPane.alignment="CENTER">
-               <children>
-                  <JFXButton layoutX="327.0" onAction="#addCard" ripplerFill="WHITE" styleClass="toolbar-btn" stylesheets="@customStyles.css" text="HELLO" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-         </right>
-      </JFXToolbar>
-      <JFXTabPane minHeight="40.0" rotateGraphic="true" stylesheets="@customStyles.css" tabMinHeight="20.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-         <tabs>
-            <Tab text="Ordenes">
-               <content>
-                  <AnchorPane fx:id="ordersPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-                     <children>
-                        <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #EEEEEE;">
-                                 <JFXMasonryPane fx:id="masonPane" HSpacing="1.0" cellHeight="50.0" cellWidth="50.0" style="-fx-background-color: #EEEEEE;" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <padding>
-                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </padding>
-                                 </JFXMasonryPane>
-                                 <StackPane.margin>
-                                    <Insets />
-                                 </StackPane.margin>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
 
-                              </ScrollPane>
-                           </children>
-                        </StackPane>
-                        <AnchorPane fx:id="noOrdersPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No hay ordenes" wrappingWidth="179.9830722808838" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="25.0" />
-                           </children>
-                        </AnchorPane>
+<StackPane fx:id="rootStackPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.Controller">
+   <children>
+      <AnchorPane fx:id="rootPane" prefHeight="368.0" prefWidth="500.0">
+         <children>
+            <JFXToolbar maxHeight="40.0" minHeight="60.0" prefHeight="30.0" style="-fx-background-color: -fx-primary;" stylesheets="@customStyles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="14.0" layoutY="8.0" prefHeight="19.0" prefWidth="127.0" styleClass="app-title" stylesheets="@customStyles.css" text="Mesero" wrapText="true">
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN" color="#00000080" height="10.0" offsetY="3.0" radius="4.5" width="10.0" />
+                           </effect>
+                        </Label>
                      </children>
                   </AnchorPane>
-
-               </content>
-            </Tab>
-            <Tab text="Meseros">
-              <content>
-                 <AnchorPane fx:id="waitersPane" prefHeight="200.0" prefWidth="200.0">
-                    <children>
-                       <Text layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No hay meseros" wrappingWidth="521.9830722808838" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="25.0" />
-                    </children>
-                 </AnchorPane>
-              </content>
-            </Tab>
-         </tabs>
-      </JFXTabPane>
+               </left>
+               <right>
+                  <AnchorPane prefHeight="70.0" prefWidth="685.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <JFXButton layoutX="327.0" onAction="#addCard" ripplerFill="WHITE" styleClass="toolbar-btn" stylesheets="@customStyles.css" text="HELLO" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </right>
+            </JFXToolbar>
+            <JFXTabPane minHeight="40.0" rotateGraphic="true" stylesheets="@customStyles.css" tabMinHeight="20.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+               <tabs>
+                  <Tab text="Ordenes">
+                     <content>
+                        <AnchorPane fx:id="ordersPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+                           <children>
+                              <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #EEEEEE;">
+                                       <JFXMasonryPane fx:id="masonPane" HSpacing="1.0" cellHeight="50.0" cellWidth="50.0" style="-fx-background-color: #EEEEEE;" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <padding>
+                                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          </padding>
+                                       </JFXMasonryPane>
+                                       <StackPane.margin>
+                                          <Insets />
+                                       </StackPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+      
+                                    </ScrollPane>
+                                 </children>
+                              </StackPane>
+                              <AnchorPane fx:id="noOrdersPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No hay ordenes" wrappingWidth="179.9830722808838" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="25.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+      
+                     </content>
+                  </Tab>
+                  <Tab text="Meseros">
+                    <content>
+                       <AnchorPane fx:id="waitersPane" prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                              <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane fx:id="scrollPane1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #EEEEEE;">
+                                       <StackPane.margin>
+                                          <Insets />
+                                       </StackPane.margin>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                       <content>
+                                          <JFXMasonryPane fx:id="waitersMasonPane" HSpacing="1.0" cellHeight="50.0" cellWidth="50.0" style="-fx-background-color: #EEEEEE;" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </JFXMasonryPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </StackPane>
+                              <AnchorPane fx:id="nowaitersPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No hay meseros" wrappingWidth="521.9830722808838" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="25.0" />
+                                 </children>
+                              </AnchorPane>
+                          </children>
+                       </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

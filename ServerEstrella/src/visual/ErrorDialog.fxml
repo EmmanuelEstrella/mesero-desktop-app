@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane maxWidth="631.0" prefHeight="229.0" prefWidth="631.0" styleClass="card" stylesheets="@customStyles.css">
+         <children>
+            <TextFlow layoutX="50.0" layoutY="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <Label text="Ocurrio un problema">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </TextFlow>
+            <TextFlow layoutX="20.0" layoutY="75.0" prefHeight="71.0" prefWidth="591.0">
+               <children>
+                  <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="247.6708984375" />
+               </children>
+            </TextFlow>
+            <JFXButton fx:id="closeBtn" layoutX="225.0" layoutY="259.0" text="CERRAR" textFill="#009688" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
+   </children>
+</StackPane>

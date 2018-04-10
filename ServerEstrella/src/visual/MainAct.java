@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class MainAct extends Application {
@@ -27,7 +28,7 @@ public class MainAct extends Application {
     @FXML
     private JFXDrawer mainDrawer;
 
-	AnchorPane rootPane;
+	StackPane rootPane;
 	@Override
 	public void start(Stage primaryStage) {
 		FXMLLoader loader = new FXMLLoader();
@@ -43,7 +44,7 @@ public class MainAct extends Application {
 			}
 			String css = url.toExternalForm();
 
-			rootPane = (AnchorPane) loader.load();
+			rootPane = (StackPane) loader.load();
 			JFXDecorator decorator = new JFXDecorator(primaryStage, rootPane);
 
 			Scene scene = new Scene(decorator);
