@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +21,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class MainAct extends Application {
 
@@ -46,19 +49,54 @@ public class MainAct extends Application {
 
 			rootPane = (StackPane) loader.load();
 			JFXDecorator decorator = new JFXDecorator(primaryStage, rootPane);
+			decorator.setOnCloseButtonAction(new Runnable() {
+				@Override
+				public void run() {
+					System.out.println("closing");
+
+					new Thread(){
+						@Override
+						public void run() {
+							Platform.exit();
+							System.exit(0);
+						}
+					}.start();
+				}
+			});
+			decorator.customMaximizeProperty().setValue(false);
+			decorator.setMaximized(true);
 
 			Scene scene = new Scene(decorator);
 			scene.getStylesheets().add(css);
 
-           primaryStage.setScene(scene);
+           	primaryStage.setScene(scene);
+
+			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent t) {
+					System.out.println("closing");
+					Platform.exit();
+					new Thread(){
+						@Override
+						public void run() {
+							System.exit(0);
+						}
+					}.start();
+
+
+				}
+			});
            primaryStage.show();
            
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+
 	}
+
+
 	
 
 
